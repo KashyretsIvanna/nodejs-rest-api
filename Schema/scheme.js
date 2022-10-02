@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const contacts = new Schema({
   name: {
     type: String,
-    required: [true, "Set name for contact"],
+    // required: [true, "Set name for contact"],
   },
   email: {
     type: String,
@@ -16,11 +16,11 @@ const contacts = new Schema({
   favorite: {
     type: Boolean,
     default: false,
+    enum: [true, false],
   },
 });
 
-
 contacts.method.nameEmail = () => console.log(this.name + " " + this.email);
-const Contacts = mongoose.model('contacts', contacts);
+const Contacts = mongoose.model("contacts", contacts);
 
-module.exports=Contacts;
+module.exports = Contacts;

@@ -1,20 +1,21 @@
-const express = require('express')
+const express = require("express");
 const router = express.Router();
-const { getFunction } = require("../../controllers/get")
-const { getId } = require("../../controllers/getId")
-const { post } = require("../../controllers/post")
-const { deleteEl } = require("../../controllers/delete")
-const { putContacts } = require("../../controllers/put")
+const { getFunction } = require("../../controllers/get");
+const { getId } = require("../../controllers/getId");
+const { post } = require("../../controllers/post");
+const { deleteEl } = require("../../controllers/delete");
+const { putContacts } = require("../../controllers/put");
+const { patchContacts } = require("../../controllers/patch");
 
+router.get("/", getFunction);
 
-router.get('/', getFunction)
+router.get("/:contactId", getId);
 
-router.get('/:contactId', getId)
+router.post("/", post);
 
-router.post('/', post)
+router.delete("/:contactId", deleteEl);
 
-router.delete('/:contactId', deleteEl)
+router.put("/:contactId", putContacts);
+router.patch("/:contactId", patchContacts);
 
-router.put('/:contactId', putContacts)
-
-module.exports = router
+module.exports = router;

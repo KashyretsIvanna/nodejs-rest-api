@@ -1,18 +1,16 @@
 const app = require("./app");
-const mongoos = require("mongoose");
+const mongoose = require("mongoose");
 require("dotenv").config();
 
 //Database connection------------------
 const PORT = process.env.PORT || 3000;
 const uriDb = process.env.DB_CONNECT;
-mongoos.Promise = global.Promise;
+mongoose.Promise = global.Promise;
+const connection = mongoose.connect(
+  "mongodb+srv://Ivanna:LovaLova123@cluster0.4avkctp.mongodb.net/db-contacts?retryWrites=true&w=majority"
+);
 
-mongoos
-  .connect("mongodb+srv://Ivanna:LovaLova123@cluster0.4avkctp.mongodb.net/?retryWrites=true&w=majority", {
-    // useCreateIndex: true,
-    // useUnifiedTopology: true,
-    // useFindAndModify: false,
-  })
+connection
   .then(() => {
     app.listen(PORT, () => {
       console.log("Server running. Use our API on port: 3000");
