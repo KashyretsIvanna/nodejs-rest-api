@@ -1,5 +1,3 @@
-const func = require("../models/contacts.js");
-const { v4 } = require("uuid");
 const Joi = require("joi");
 const { createContact } = require("../service/index");
 
@@ -9,7 +7,7 @@ const post = async (req, res, next) => {
     name: Joi.string(),
     email: Joi.string(),
     phone: Joi.string(),
-    favourite:Joi.boolean()
+    favourite: Joi.boolean(),
   });
   let resp = schema.validate(body);
   if (resp.error) {
@@ -19,7 +17,6 @@ const post = async (req, res, next) => {
     let added = { ...resp.value };
     createContact(added);
     res.status(201).json(added);
-
   }
 };
 

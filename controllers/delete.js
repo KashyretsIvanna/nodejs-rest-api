@@ -5,9 +5,6 @@ const { removeContacts } = require("../service/index.js");
 const deleteEl = async (req, res, next) => {
   let id = req.params.contactId;
   let bool = await removeContacts(id);
-  //   let bool = await func.removeContacts(id);
-
-  console.log(bool);
   if (bool) {
     res.json({ message: "contact deleted" });
   } else {

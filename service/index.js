@@ -10,8 +10,8 @@ const createContact = ({ name, email, phone, favorite }) =>
     favorite: favorite,
   });
 
-const updateStatusContact = (id, favorite) => Contacts.findByIdAndUpdate({ _id: id }, { favorite }, { new: true });
-
+const updateStatusContact = (id, favorite) =>
+  Contacts.findByIdAndUpdate({ _id: id }, { favorite }, { new: true });
 
 const updateContacts = (id, fields) =>
   Contacts.findByIdAndUpdate({ _id: id }, fields, { new: true });
