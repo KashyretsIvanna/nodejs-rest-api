@@ -4,11 +4,8 @@ require("dotenv").config();
 
 //Database connection------------------
 const PORT = process.env.PORT || 3000;
-const uriDb = process.env.DB_CONNECT;
 mongoose.Promise = global.Promise;
-const connection = mongoose.connect(
-  "mongodb+srv://Ivanna:LovaLova123@cluster0.4avkctp.mongodb.net/db-contacts?retryWrites=true&w=majority"
-);
+const connection = mongoose.connect(process.env.DB_CONNECT);
 
 connection
   .then(() => {
