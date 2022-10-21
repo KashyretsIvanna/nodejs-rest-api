@@ -5,7 +5,7 @@ const Shema = mongoose.Schema;
 const user = new Shema({
   name: {
     type: String,
-    required:false
+    required: false,
   },
   password: {
     type: String,
@@ -25,6 +25,7 @@ const user = new Shema({
     type: String,
     default: null,
   },
+  avatarURL: String,
 });
 
 const UserModel = mongoose.model("user", user);
