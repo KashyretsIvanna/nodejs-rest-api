@@ -21,7 +21,7 @@ const login = async (req, res, next) => {
   } else {
     const user = await serchUser(resp.value.email);
     console.log(user);
-    if (user) {
+    if (user.verify) {
       const bool = await bcrypt.compare(resp.value.password, user.password);
       if (bool) {
         const token = await jwt.sign({ _id: user._id }, SECRET_KEY, {

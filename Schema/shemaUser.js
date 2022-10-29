@@ -26,6 +26,11 @@ const user = new Shema({
     default: null,
   },
   avatarURL: String,
+  verificationToken :String,
+  verify:{
+    type:String,
+    default:false
+  }
 });
 
 const UserModel = mongoose.model("user", user);

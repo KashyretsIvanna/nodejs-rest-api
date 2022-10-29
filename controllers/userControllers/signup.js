@@ -5,6 +5,8 @@ const gravatar = require("gravatar");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { ObjectId } = require("mongodb");
+const {v4: uuidv4 } = require("uuid");
+const sendEmail = require("./sendEmail");
 
 const signup = async (req, res, next) => {
   const payload = req.body;
@@ -14,7 +16,7 @@ const signup = async (req, res, next) => {
     password: Joi.string().required(),
     subscription: Joi.string(),
   });
-  const resp = await shema.validate(payload);
+  const resp = shema.validate(payload);
   const user = await serchUser(resp.value.email);
   const salt = await bcrypt.genSalt(10);
 
@@ -27,6 +29,7 @@ const signup = async (req, res, next) => {
       res.json({ message: resp.error });
     } else {
       const id = ObjectId(32);
+      const verificationToken = uuidv4();
       const token = await jwt.sign({ _id: id }, process.env.SECRET_KEY, {
         expiresIn: "1d",
       });
@@ -37,8 +40,12 @@ const signup = async (req, res, next) => {
         ...resp.value,
         token: token,
         avatarURL: avatar,
+        verificationToken,
       });
-      console.log(resp.value);
+      sendEmail({
+        email: resp.value.email,
+        token: verificationToken,
+      });
       res.status(201);
       res.json({
         token: token,

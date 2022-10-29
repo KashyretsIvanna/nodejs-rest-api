@@ -2,7 +2,6 @@ const app = require("./app");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-//Database connection------------------
 const PORT = process.env.PORT || 3000;
 mongoose.Promise = global.Promise;
 const connection = mongoose.connect(process.env.DB_CONNECT);
