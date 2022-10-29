@@ -7,9 +7,9 @@ const current = require("../../controllers/userControllers/current");
 const changeAvatar = require("../../controllers/userControllers/avatar");
 const multer = require("multer");
 const path = require("path");
-const app=require("../../app")
-const verify=require("../../controllers/userControllers/verify")
-const repeatVerification=require("../../controllers/userControllers/repeatVerification")
+const app = require("../../app");
+const verify = require("../../controllers/userControllers/verify");
+const repeatVerification = require("../../controllers/userControllers/repeatVerification");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -33,9 +33,7 @@ router.patch(
   changeAvatar
 );
 router.post("/signup", signup);
-router.get("/verify/:verificationToken",verify)
-router.post("/verify",repeatVerification)
-
-
+router.get("/verify/:verificationToken", verify);
+router.post("/verify", repeatVerification);
 
 module.exports = router;
